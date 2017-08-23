@@ -29,5 +29,5 @@ RUN chmod +x ./entrypoint.sh
 #Default port to expose
 EXPOSE 8000
 
-#Default command to run
+#Default cmd to run
 CMD /app/goldfish -config=/app/config.hcl -token=${VAULT_TOKEN}
