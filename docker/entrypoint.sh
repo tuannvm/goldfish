@@ -5,8 +5,11 @@
 #- https://github.com/Caiyeon/goldfish/wiki/Production-Deployment#1-prepare-vault-only-needs-to-be-done-once
 
 # Vault container config
-export VAULT_ADDR="http://vault:8200"
-export VAULT_TOKEN="goldfish"
+# export VAULT_ADDR="http://vault:8200"
+# export VAULT_TOKEN="goldfish"
+
+: ${VAULT_ADDR:="http://vault:8200"}
+: ${VAULT_TOKEN:="goldfish"}
 
 #One place for curl options
 CURL_OPT="-s -H X-Vault-Token:${VAULT_TOKEN}"
