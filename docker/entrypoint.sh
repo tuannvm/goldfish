@@ -32,4 +32,11 @@ curl ${CURL_OPT} ${VAULT_ADDR}/v1/secret/goldfish -d '{"DefaultSecretPath":"secr
 #Generate token to start Goldfish with
 WRAPPED_TOKEN=`curl ${CURL_OPT} --header "X-Vault-Wrap-TTL: 20" -X POST ${VAULT_ADDR}/v1/auth/approle/role/goldfish/secret-id | jq -r .wrap_info.token`
 
-/app/goldfish -config=/app/docker.json -token=${WRAPPED_TOKEN}
+if ${VAULT_TOKEN} -eq "goldfish"
+then
+  /app/goldfish -config=/app/docker.json
+else
+  /app/goldfish -config=/app/docker.json -token=${WRAPPED_TOKEN}
+fi
+
+
